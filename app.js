@@ -45,10 +45,10 @@ const template ='./docs/views/index.ejs';
 const output = './docs/views/output.html';
 
 const templateContent=fs.readFileSync(template,'utf-8');
-const compiledTemp=ejs.render(templateContent,{value:data1})
+const compiledTemp=ejs.render(templateContent,{value:data1+'dB'})
 
 fs.writeFileSync(output,compiledTemp,'utf-8')
-}, 500);
+}, 1000);
 
 
 app.use(express.static(path.join(__dirname+'/docs')))
