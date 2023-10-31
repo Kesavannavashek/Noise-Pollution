@@ -29,7 +29,7 @@ admin.initializeApp({
   databaseURL: "https://noise-pollution-monitering-default-rtdb.firebaseio.com"
 });
 
-// Reference to the databas
+
 const db = admin.database();
 var data1
 
