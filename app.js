@@ -29,7 +29,7 @@ admin.initializeApp({
   databaseURL: "https://noise-pollution-monitering-default-rtdb.firebaseio.com"
 });
 
-// Reference to the databas
+
 const db = admin.database();
 var data1
 
@@ -37,7 +37,7 @@ var data1
 setInterval(() => {
   let ref = db.ref('sensor_data/NoiseLevelDB');
 
-ref.on('value',(snapshot) => {
+ref.once('value',(snapshot) => {
   data1 = snapshot.val()
 })
 
@@ -45,7 +45,7 @@ const template ='./docs/views/index.ejs';
 const output = './docs/views/output.html';
 
 const templateContent=fs.readFileSync(template,'utf-8');
-const compiledTemp=ejs.render(templateContent,{value:data1})
+const compiledTemp=ejs.render(templateContent,{value:data1+'dB'})
 
 fs.writeFileSync(output,compiledTemp,'utf-8')
 }, 500);
