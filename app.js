@@ -9,7 +9,7 @@ app.set('view engine','ejs');
 var admin = require("firebase-admin");
 const path = require("path");
 
-app.set('views',path.join(__dirname,'public/views'))
+app.set('views',path.join(__dirname,'docs/views'))
 
 const firebaseConfig = {
   "type": "service_account",
@@ -41,8 +41,8 @@ ref.on('value',(snapshot) => {
   data1 = snapshot.val()
 })
 
-const template ='./public/views/index.ejs';
-const output = './public/views/output.html';
+const template ='./docs/views/index.ejs';
+const output = './docs/views/output.html';
 
 const templateContent=fs.readFileSync(template,'utf-8');
 const compiledTemp=ejs.render(templateContent,{value:data1})
@@ -51,7 +51,7 @@ fs.writeFileSync(output,compiledTemp,'utf-8')
 }, 500);
 
 
-app.use(express.static(path.join(__dirname+'/public')))
+app.use(express.static(path.join(__dirname+'/docs')))
 
 app.listen(8080,()=>{
   console.log('from 8080');
