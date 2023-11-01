@@ -33,10 +33,10 @@ admin.initializeApp({
 const db = admin.database();
 var data1
 
-setTimeout(() => {
+setInterval(() => {
   let ref = db.ref('sensor_data/NoiseLevelDB');
 
-ref.once('value',(snapshot) => {
+ref.on('value',(snapshot) => {
   data1 = snapshot.val()
 })
 
@@ -47,7 +47,7 @@ const templateContent=fs.readFileSync(template,'utf-8');
 const compiledTemp=ejs.render(templateContent,{value:data1+'dB'})
 
 fs.writeFileSync(output,compiledTemp,'utf-8')
-}, 500);
+}, 1000);
 
 
 app.use(express.static(path.join(__dirname+'/docs')))
